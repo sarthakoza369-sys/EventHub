@@ -1,11 +1,11 @@
 info:
-  name: Add Event
+  name: Edit Event
   type: http
-  seq: 1
+  seq: 3
 
 http:
-  method: POST
-  url: http://localhost:5000/api/events/addevent
+  method: PUT
+  url: http://localhost:5000/api/events/editevent/6a3fff439b86d0f78809d54f
   headers:
     - name: Content-Type
       value: application/json
@@ -15,10 +15,10 @@ http:
     type: json
     data: |-
       {
-        "title": "MERN stack development",
-        "description": "Lets LEARN the MERN",
+        "title": "Updated MERN stack development",
+        "description": "Updated Lets LEARN the MERN",
         "date": "2026-07-15T10:00:00.000Z",
-        "location": "Mumbai"
+        "location": "New Mumbai"
       }
   auth: inherit
 

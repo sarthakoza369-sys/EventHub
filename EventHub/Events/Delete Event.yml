@@ -1,25 +1,16 @@
 info:
-  name: Add Event
+  name: Delete Event
   type: http
-  seq: 1
+  seq: 2
 
 http:
-  method: POST
-  url: http://localhost:5000/api/events/addevent
+  method: DELETE
+  url: http://localhost:5000/api/events/delete_event/6a3fee4527d61e5106492803
   headers:
     - name: Content-Type
       value: application/json
     - name: auth-token
       value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNmEzZjdlMzVlMWVlYTgzYjcyZWM0NTE2In0sImlhdCI6MTc4MjU0NTk3M30.zf7-2O4HO1rhDVPTPZwDBR2Dwe9EKIRk3VtGcmgSDck
-  body:
-    type: json
-    data: |-
-      {
-        "title": "MERN stack development",
-        "description": "Lets LEARN the MERN",
-        "date": "2026-07-15T10:00:00.000Z",
-        "location": "Mumbai"
-      }
   auth: inherit
 
 settings:
