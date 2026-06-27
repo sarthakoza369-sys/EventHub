@@ -15,10 +15,11 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    collegeYear:{
+   joiningYear: {
         type: Number,
         required: true,
-        enum: [1,2,3,4,5]
+        min: 2020, // Prevents accidental typos or unrealistic inputs
+        max: new Date().getFullYear() // Dynamically restricts the max year to the current year
     },
     date:{
         type: Date,

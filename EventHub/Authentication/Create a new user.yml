@@ -1,0 +1,27 @@
+info:
+  name: Create a new user
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:5000/api/auth/createUser
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Sarthak oza",
+        "email": "thisissarthak@gmail.com",
+        "password": "ogsarthakcoder",
+        "joiningYear": 2021
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
