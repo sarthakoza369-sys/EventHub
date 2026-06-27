@@ -1,0 +1,29 @@
+info:
+  name: Add Event
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:5000/api/events/addevent
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: auth-token
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNmEzZjdlMzVlMWVlYTgzYjcyZWM0NTE2In0sImlhdCI6MTc4MjU0NTk3M30.zf7-2O4HO1rhDVPTPZwDBR2Dwe9EKIRk3VtGcmgSDck
+  body:
+    type: json
+    data: |-
+      {
+        "title": "React Workshop",
+        "description": "A hands-on workshop on React basics",
+        "date": "2026-07-15T10:00:00.000Z",
+        "location": "Mumbai"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
