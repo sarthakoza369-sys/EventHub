@@ -45,7 +45,7 @@ router.post("/addevent", fetchuser, [
                 let event = await Event.findById(req.params.id);
 
                 if(!event){
-                     return res.status(404  ).send("Not Found")
+                     return res.status(404).send("Not Found")
                 }
 
                 if(event.host.toString() !== req.user.id){
@@ -95,7 +95,74 @@ router.post("/addevent", fetchuser, [
     //ROUTE 4: Register for an event using: POST "/api/events/register"
     router.post("/register/:id", fetchuser, 
         async (req, res) => {
-            let 
-        })
+            try {
+                let event = await Event.findById(req.params.id);
 
+            if(!event){
+               return res.status(404).send("Not Found")
+            }
+
+            //Allow registration only if he is not HOST of that event:
+            if(event.host.toString() === req.user.id){
+                return res.status(401).send("You are the host");
+            }
+
+            if(event.attendees.some(attendeeId => attendeeId.toString() === req.user.id)){
+                return res.status(400).json("You are already registered for this event");
+            }
+
+           event.attendees.push(req.user.id);
+           const reg_event = await event.save();
+           await reg_event.populate([
+                { path: 'host', select: 'name email' },
+                { path: 'attendees', select: 'name email' }
+            ]);
+            res.json(reg_event);
+            } catch (err) {
+                 console.log(err.message);
+                 res.status(500).send("Internal sever error")
+            }
+        });
+
+    //ROUTE 5: Unregister for an event using: DELETE "/api/events/unregister"
+    router.delete("/unregister/:id", fetchuser, 
+        async (req, res) => {
+            try {
+                let event = await Event.findById(req.params.id);
+
+            if(!event){
+               return res.status(404).send("Not Found")
+            }
+
+            //Allow unregistration only if user is not HOST of that event:
+            if(event.host.toString() === req.user.id){
+                return res.status(401).send("You are the host");
+            }
+
+            if(!event.attendees.some(attendeeId => attendeeId.toString() === req.user.id)){
+                return res.status(400).json("You are not registered for this event");
+            }
+
+           event.attendees = event.attendees.filter((attendeeId)=>{
+            return attendeeId.toString() !== req.user.id
+           });
+
+           const unreg_event = await event.save();
+           await unreg_event.populate([
+                { path: 'host', select: 'name email' },
+                { path: 'attendees', select: 'name email' }
+            ]);
+            res.json(unreg_event);
+            } catch (err) {
+                 console.log(err.message);
+                 res.status(500).send("Internal sever error")
+            }
+        });
+
+        //ROUTE 6: Fetch all events using GET: "/api/events/fetchevents"
+
+        router.get("/fetchevents", fetchuser,
+            async(req,res)=>{
+
+            });
     module.exports = router;

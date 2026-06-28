@@ -13,9 +13,9 @@ http:
     type: json
     data: |-
       {
-        "name": "Sarthak oza",
-        "email": "thisissarthak@gmail.com",
-        "password": "ogsarthakcoder",
+        "name": "Virat Kohli",
+        "email": "kohliS@gmail.com",
+        "password": "king_kohli",
         "joiningYear": 2021
       }
   auth: inherit
