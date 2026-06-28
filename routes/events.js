@@ -163,6 +163,48 @@ router.post("/addevent", fetchuser, [
 
         router.get("/fetchevents", fetchuser,
             async(req,res)=>{
+                try {
+                    let events = await Event.find({ date: { $gte: new Date() } })
+                    .sort({ date: 1 })
+                    .populate('host', 'name email');
 
+                    events = await Promise.all(events.map(async (event) => {
+                        const isHost = event.host.id.toString() === req.user.id;
+                        if (isHost) {
+                            await event.populate('attendees', 'name email');
+                            return event.toObject();
+                        }
+                        return { ...event.toObject(), attendees: event.attendees.length };
+                    }));
+                    res.json(events);
+                } catch (err) {
+                 console.log(err.message);
+                 res.status(500).send("Internal sever error")
+                }
             });
+
+            //ROUTE 7: Show the event hosted by the user by: POST "/api/events/myevents"
+
+            router.get("/myevents", fetchuser, 
+                async(req,res)=>{
+                    try {
+                        let events = await Event.find({host: req.user.id});
+                        res.json(events)
+                    } catch (err) {
+                        console.log(err.message);
+                        res.status(500).send("Internal sever error")
+                    }
+                });
+            //ROUTE 8: Show the events user have registered in: POST "/api/events/registeredevents"
+
+            router.get("/registeredevents", fetchuser, 
+                async(req,res)=>{
+                    try {
+                        let events = await Event.find({attendees: req.user.id}).populate('host', 'name email')
+                        res.json(events)
+                    } catch (err) {
+                        console.log(err.message);
+                        res.status(500).send("Internal sever error")
+                    }
+                });
     module.exports = router;

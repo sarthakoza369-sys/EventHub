@@ -1,11 +1,11 @@
 info:
-  name: Register a user
+  name: Fetch registered events
   type: http
-  seq: 4
+  seq: 8
 
 http:
-  method: POST
-  url: http://localhost:5000/api/events/register/6a412913098cc8399d476007
+  method: GET
+  url: http://localhost:5000/api/events/registeredevents
   headers:
     - name: Content-Type
       value: application/json
