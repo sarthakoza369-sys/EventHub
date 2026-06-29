@@ -1,0 +1,146 @@
+import eventContext from "./eventContext";
+import { useContext, useState } from "react";
+
+const EventState = (props)=>{
+    const host = "http://localhost:5000"
+
+    const eventsInitial = [];
+    const [events, setEvents]= useState(eventsInitial);
+
+    const myEventsInitial = [];
+    const [myEvents, setMyEvents] = useState(myEventsInitial);
+
+    const myRegEventsInitial = [];
+    const [myRegEvents, setMyRegEvents] = useState(myRegEventsInitial)
+
+
+    //Add an Event
+
+    const addEvent = async(title, description, location, date)=>{
+
+        //API CALL
+        const response = await fetch(`${host}/api/events/addevent`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-Token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({ title, description, location, date })
+        });
+
+        if(response.ok){
+            const event = await response.json();
+            setEvents(events.concat(event))
+        }else{
+            alert("Something went wrong!!");
+        }
+    }
+
+    //Delete an event
+
+    const deleteEvent = async (id)=>{
+        
+        //API CALL
+        const response = await fetch(`${host}/api/events/delete_event/${id}`,{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-Token': localStorage.getItem('token')
+            },
+        });
+
+         if(response.ok){
+             const newEvents = events.filter((event)=>event._id !== id);
+             setEvents(newEvents);
+        }else{
+            alert("Something went wrong!!");
+        }
+    }
+
+    //Edit an event
+
+    const editEvent = async (id, title, description, location, date) => {
+
+        //API CALL
+        const response = await fetch(`${host}/api/events/editevent/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-Token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({ title, description, location, date })
+        });
+
+        if (response.ok) {
+            const newEvents = events.map((event) => {
+                if (event._id === id) {
+                    return { ...event, title, description, location, date };
+                }
+                return event;
+            });
+            setEvents(newEvents);
+        } else {
+            alert("Something went wrong!!");
+        }
+    }
+
+    //Get ALL events
+    const getAllEvents = async ()=>{
+        
+        //API CALL
+        const response = await fetch(`${host}/api/events/fetchevents`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-Token': localStorage.getItem('token')
+            }
+        });
+        
+        if(response.ok){
+            const json = await response.json();
+            setEvents(json);
+        }else{
+            alert("Something went wrong!!");
+        }
+    }
+
+    //Get Hosted events
+    const getHostedEvents = async()=>{
+        //API CALL
+        const response = await fetch(`${host}/api/events/myevents`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-Token': localStorage.getItem('token')
+            }
+        });
+
+        if(response.ok){
+            const json = await response.json();
+            setMyEvents(json);
+        }else{
+            alert("Something went wrong!!");
+        }
+    }
+
+    //Get Registered events
+    const getRegEvents = async()=>{
+        //API CALL
+        const response = await fetch(`${host}/api/events/registeredevents`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-Token': localStorage.getItem('token')
+            }
+        });
+
+        if(response.ok){
+            const json = await response.json();
+            setMyRegEvents(json);
+        }else{
+            alert("Something went wrong!!");
+        }
+    }
+}
+
+export default EventState;
