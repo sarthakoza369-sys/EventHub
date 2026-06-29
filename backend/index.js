@@ -18,5 +18,5 @@ app.use('/api/events', require('./routes/events'));
 
 
 app.listen(port, () => {
-  console.log(`iNotebook backend listening on port ${port}`);
+  console.log(`EventHub backend listening on port ${port}`);
 });
