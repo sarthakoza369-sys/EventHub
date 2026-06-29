@@ -92,7 +92,7 @@ router.post("/addevent", fetchuser, [
             }
         });
 
-    //ROUTE 4: Register for an event using: POST "/api/events/register"
+    //ROUTE 4: Register for an event using: POST "/api/events/register/:id"
     router.post("/register/:id", fetchuser, 
         async (req, res) => {
             try {

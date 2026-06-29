@@ -141,6 +141,48 @@ const EventState = (props)=>{
             alert("Something went wrong!!");
         }
     }
+
+    
+    const registerEvent = async (id) => {
+        const response = await fetch(`${host}/api/events/register/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-Token': localStorage.getItem('token')
+            }
+        });
+
+        if (response.ok) {
+            await getAllEvents();      // refresh home feed (attendee count updates)
+            await getRegEvents();      // refresh registered events list
+        } else {
+            alert("Something went wrong!!");
+        }
+        }
+
+        const unregisterEvent = async (id) => {
+            const response = await fetch(`${host}/api/events/unregister/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-Token': localStorage.getItem('token')
+                }
+            });
+
+            if (response.ok) {
+                await getAllEvents();      // refresh home feed (attendee count updates)
+                await getRegEvents();      // refresh registered events list
+            } else {
+                alert("Something went wrong!!");
+            }
+            }
+
+            return (
+    <eventContext.Provider value={{events, myEvents, myRegEvents,addEvent, deleteEvent, editEvent,getAllEvents, getHostedEvents, getRegEvents,registerEvent, unregisterEvent
+    }}>
+        {props.children}
+    </eventContext.Provider>
+)
 }
 
 export default EventState;
