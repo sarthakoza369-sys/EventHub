@@ -10,7 +10,7 @@ http:
     - name: Content-Type
       value: application/json
     - name: auth-token
-      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNmE0MTI4ZDcwOThjYzgzOTlkNDc2MDA2In0sImlhdCI6MTc4MjY1NTE5MX0.RrsxR6RwoyLbiTWhfitTFu1ZYUIEudHeVwsilOEtyc0
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNmE0MzY3MjRlMDNhZjk5OGUxYjBhM2U2In0sImlhdCI6MTc4MjgwMjIxMn0.P5nOVkJ0HntK3SyUr3Ke7yAtTnQ4iEb1bPErs-rbt0Q
   auth: inherit
 
 settings:

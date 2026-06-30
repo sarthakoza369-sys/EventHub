@@ -7,11 +7,12 @@ import Navbar from './Components/Navbar';
 import AddEvents from './Components/AddEvents';
 import MyEvents from './Components/MyEvents';
 import RegEvents from './Components/RegEvents';
+import EventState from './context/events/EventState'
 
 function App() {
   return (
     <>
-      <div className="App">
+      <EventState>
         <Router>
            <Hamburger/>
            <Navbar/>
@@ -24,8 +25,7 @@ function App() {
             </Routes>
            </div>
         </Router>
-        
-      </div>
+      </EventState>
     </>
   );
 }

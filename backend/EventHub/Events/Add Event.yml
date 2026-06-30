@@ -15,8 +15,8 @@ http:
     type: json
     data: |-
       {
-        "title": "Film Fair Awards",
-        "description": "awards",
+        "title": "Event 10",
+        "description": "Hello Coding",
         "date": "2026-07-15T10:00:00.000Z",
         "location": "Mumbai"
       }

@@ -1,28 +1,29 @@
-import React, { useContext } from 'react'
-import eventContext from '../context/events/eventContext'
+import React, { useContext } from 'react';
+import eventContext from '../context/events/eventContext';
+import EventState from '../context/events/EventState';
 
 const EventItems = (props) => {
+
   const context = useContext(eventContext);
-  const { deleteEvent } = context;
-  const { event, onEditClick } = props;
+  const {deleteEvent} = context
+  const { event } = props;
 
   return (
-    <div className="col">
-      <div className="card h-100">
-        <img src={event.image || "..."} className="card-img-top" alt={event.title} />
-        <div className="card-body">
-          <h5 className="card-title">{event.title}</h5>
-          <span style={{ cursor: 'pointer' }} onClick={() => deleteEvent(event._id)}>
-            <i className="fa-solid fa-trash-can mx-2"></i>
-          </span>
-          <span style={{ cursor: 'pointer' }} onClick={() => onEditClick(event)}>
-            <i className="fa-solid fa-pen-to-square mx-2"></i>
-          </span>
-          <p className="card-text">{event.description}</p>
+    <div className="card h-100 shadow-sm border border-secondary" style={{ maxWidth: "340px", margin: "auto" }}>
+      <img src={event.image || "https://via.placeholder.com/150"} className="card-img-top" />
+      <div className="card-body py-2 px-3 d-flex flex-column justify-content-between">
+        <div>
+          <h6 className="card-title mb-1 fw-bold">{event.title}</h6>
+          <p className="card-text text-muted mb-2" style={{ fontSize: "0.8rem" }}>{event.description}</p>
         </div>
+        {/* <div className="mt-2 d-flex justify-content-end gap-3">
+          <i className="far fa-trash-alt text-danger cursor-pointer" onClick={() => deleteEvent(event._id)} style={{ fontSize: "0.85rem",cursor: 'pointer' }} title="Delete"></i>
+          <i className="far fa-edit text-primary cursor-pointer" style={{ fontSize: "0.85rem",cursor: 'pointer' }} title="Edit"></i>
+        </div> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EventItems
+export default EventItems;
+

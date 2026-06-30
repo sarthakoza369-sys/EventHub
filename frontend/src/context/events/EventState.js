@@ -162,7 +162,7 @@ const EventState = (props)=>{
 
         const unregisterEvent = async (id) => {
             const response = await fetch(`${host}/api/events/unregister/${id}`, {
-                method: 'POST',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-Token': localStorage.getItem('token')
