@@ -3,12 +3,19 @@ import {
   MDBBtn,
   MDBIcon
 } from 'mdb-react-ui-kit';
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 
 export default function Hamburger() {
   // State to control if the sidebar is open or closed
   const [isOpen, setIsOpen] = useState(false);
+
+  let location = useLocation();
+  let navigate = useNavigate();
+
+  const handleHostEvent=()=>{
+    navigate('/addevent');
+  }
 
   return (
     <div>
@@ -46,12 +53,11 @@ export default function Hamburger() {
 
           {/* ADD EVENT*/}
           <li className="sidenav-item">
-            <Link className="sidenav-link d-flex align-items-center py-3 px-4 text-reset" to="addevent">
-              <MDBIcon fas icon="plus-cirlce" className="me-3" />
-              <strong>Host Event</strong>
+            <Link className="sidenav-link d-flex align-items-center py-3 px-4 text-reset" onClick={handleHostEvent} to="/addevent">
+              <MDBIcon fas icon="plus-circle" className="me-3" />
+              <strong>Host an Event</strong>
             </Link>
           </li>
-
         </ul>
       </nav>
 
