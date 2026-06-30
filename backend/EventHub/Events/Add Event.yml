@@ -15,8 +15,8 @@ http:
     type: json
     data: |-
       {
-        "title": "Event 10",
-        "description": "Hello Coding",
+        "title": "Test Event",
+        "description": "this is a test event",
         "date": "2026-07-15T10:00:00.000Z",
         "location": "Mumbai"
       }

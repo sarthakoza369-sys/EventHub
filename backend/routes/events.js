@@ -164,7 +164,10 @@ router.post("/addevent", fetchuser, [
         router.get("/fetchevents", fetchuser,
             async(req,res)=>{
                 try {
-                    let events = await Event.find({ date: { $gte: new Date() } })
+                    const startOfToday = new Date();
+                    startOfToday.setHours(0, 0, 0, 0);
+
+                    let events = await Event.find({ date: { $gte: startOfToday } })
                     .sort({ date: 1 })
                     .populate('host', 'name email');
 
@@ -178,10 +181,10 @@ router.post("/addevent", fetchuser, [
                     }));
                     res.json(events);
                 } catch (err) {
-                 console.log(err.message);
-                 res.status(500).send("Internal sever error")
+                    console.log(err.message);
+                    res.status(500).send("Internal sever error")
                 }
-            });
+    });
 
             //ROUTE 7: Show the event hosted by the user by: POST "/api/events/myevents"
 

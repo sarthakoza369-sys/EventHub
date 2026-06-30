@@ -13,9 +13,9 @@ http:
     type: json
     data: |-
       {
-        "name": "Rajat Patidar",
-        "email": "RP@gmail.com",
-        "password": "RCB_Captain",
+        "name": "Rahul Dravid",
+        "email": "RD@gmail.com",
+        "password": "Coach_Dravid",
         "joiningYear": 2021
       }
   auth: inherit

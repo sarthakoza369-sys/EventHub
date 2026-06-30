@@ -10,7 +10,7 @@ const EventItems = (props) => {
 
   return (
     <div className="card h-100 shadow-sm border border-secondary" style={{ maxWidth: "340px", margin: "auto" }}>
-      <img src={event.image || "https://via.placeholder.com/150"} className="card-img-top" alt="..." />
+      <img src={event.image || "https://placehold.co/50"} className="card-img-top" alt="..." />
       <div className="card-body py-2 px-3 d-flex flex-column justify-content-between">
         <div>
           <h6 className="card-title mb-1 fw-bold">{event.title}</h6>
