@@ -52,6 +52,9 @@ const EventState = (props)=>{
          if(response.ok){
              const newEvents = events.filter((event)=>event._id !== id);
              setEvents(newEvents);
+
+            const newMyEvents = myEvents.filter((event) => event._id !== id);
+            setMyEvents(newMyEvents);
         }else{
             alert("Something went wrong!!");
         }
@@ -72,16 +75,26 @@ const EventState = (props)=>{
         });
 
         if (response.ok) {
-            const newEvents = events.map((event) => {
-                if (event._id === id) {
-                    return { ...event, title, description, location, date };
-                }
-                return event;
-            });
-            setEvents(newEvents);
-        } else {
-            alert("Something went wrong!!");
-        }
+           // update home feed
+           const newEvents = events.map((event) => {
+               if (event._id === id) {
+                   return { ...event, title, description, location, date };
+               }
+               return event;
+           });
+           setEvents(newEvents);
+       
+           // update myEvents
+           const newMyEvents = myEvents.map((event) => {
+               if (event._id === id) {
+                   return { ...event, title, description, location, date };
+               }
+               return event;
+           });
+           setMyEvents(newMyEvents);
+       } else {
+           alert("Something went wrong!!");
+       }
     }
 
     //Get ALL events

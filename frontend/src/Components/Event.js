@@ -15,7 +15,7 @@ const Event = () => {
 
   return (
     <div className="container my-3">
-      <h2>Your Events</h2>
+      <h2>Upcoming Events</h2>
       <div className="row">
         {events.map((event) => {
           return (

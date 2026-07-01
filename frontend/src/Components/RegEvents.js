@@ -1,6 +1,7 @@
 import React,{useContext, useEffect} from 'react'
 import EventItems from './EventItems';
 import eventContext from '../context/events/eventContext';
+import UnregEventItems from './UnregEventItems';
 
 const RegEvents = () => {
 
@@ -25,7 +26,7 @@ const RegEvents = () => {
           {myRegEvents.map((event) => {
             return (
               <div className="col-md-4 p-3" key={event._id}>
-                <EventItems event={event} />
+                <UnregEventItems event={event} />
               </div>
             );
           })}

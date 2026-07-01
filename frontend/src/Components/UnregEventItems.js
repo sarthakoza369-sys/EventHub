@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import eventContext from '../context/events/eventContext';
+import EventState from '../context/events/EventState';
 
-const EventItems = (props) => {
+const UnregEventItems = (props) => {
   const context = useContext(eventContext);
-  const {registerEvent} = context
+  const {unregisterEvent} = context
   const { event } = props;
 
 
@@ -15,18 +16,11 @@ const EventItems = (props) => {
           <h6 className="card-title mb-1 fw-bold">{event.title}</h6>
           <p className="card-text text-muted mb-2" style={{ fontSize: "0.8rem" }}>{event.description}</p>
         </div>
-
-      <div className="mt-3 d-flex justify-content-between align-items-center">
-          <p className="mb-0 text-muted fw-bold" style={{ fontSize: "0.8rem" }}>
-            HOST : <span className="fw-normal"><h6>{event.host.name}</h6></span>
-          </p>
-          
-          <button 
-            className="btn btn-primary btn-sm px-3" 
-            onClick={() => { registerEvent(event._id); }} 
-            style={{ fontSize: "0.75rem", borderRadius: "4px" }}
-          >
-            REGISTER
+        
+        {/* Actions row: Register button positioned nicely at the bottom right */}
+        <div className="mt-2 d-flex justify-content-end">
+          <button className="btn btn-primary btn-sm px-3" onClick={()=>{unregisterEvent(event._id)}} style={{ fontSize: "0.75rem", borderRadius: "4px" }}>
+            Unregister
           </button>
         </div>
       </div>
@@ -34,7 +28,7 @@ const EventItems = (props) => {
   );
 };
 
-export default EventItems;
+export default UnregEventItems;
 
 
 {/* <div className="mt-2 d-flex justify-content-end gap-3">
