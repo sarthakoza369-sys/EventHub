@@ -17,8 +17,8 @@ const EventItems = (props) => {
         </div>
 
       <div className="mt-3 d-flex justify-content-between align-items-center">
-          <p className="mb-0 text-muted fw-bold" style={{ fontSize: "0.8rem" }}>
-            HOST : <span className="fw-normal"><h6>{event.host.name}</h6></span>
+          <p className="mb-0 text-muted fw-bold" style={{ fontSize: "0.8rem"  }}>
+            HOST : <span className="fw-semibold ms-1" style={{color: "#4f46e5"}}>{event.host.name}</span>
           </p>
           
           <button 

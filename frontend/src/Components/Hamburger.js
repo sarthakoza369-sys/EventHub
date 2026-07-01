@@ -6,9 +6,10 @@ import {
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 
-export default function Hamburger() {
+export default function Hamburger(props) {
   // State to control if the sidebar is open or closed
   const [isOpen, setIsOpen] = useState(false);
+  const {user} = props;
 
   let location = useLocation();
   let navigate = useNavigate();
@@ -35,6 +36,15 @@ export default function Hamburger() {
         {/* Margin top keeps the links below your fixed button */}
         <ul className="sidenav-menu" style={{ listStyle: 'none', paddingLeft: '0', marginTop: '70px' }}>
           
+         {/* Thin line above the user item */}
+        <hr className="my-2 text-muted" style={{ opacity: 0.60 }} />
+        <li className="sidenav-link d-flex align-items-center py-2 px-4 text-reset">
+            <span style={{ fontSize: "0.95rem" }}>
+              <strong>{user?.name || "Guest Account"}</strong>
+            </span>
+        </li>
+        <hr className="my-2 text-muted" style={{ opacity: 0.60 }} />
+
           {/* My Events Link */}
           <li className="sidenav-item">
             <Link className="sidenav-link d-flex align-items-center py-3 px-4 text-reset" to="/myevents">
