@@ -1,15 +1,20 @@
 import React, { useEffect, useContext } from 'react';
 import EventItems from './EventItems';
 import eventContext from '../context/events/eventContext';
+import {useNavigate} from 'react-router-dom';
 
 const Event = () => {
   const context = useContext(eventContext);
   const { events, getAllEvents } = context;
 
+  let navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem('token')) {
       getAllEvents();
        // eslint-disable-next-line
+    }else{
+      navigate('/');
     }
   }, []);
 

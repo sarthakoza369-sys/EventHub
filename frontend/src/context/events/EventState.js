@@ -23,7 +23,7 @@ const EventState = (props)=>{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-Token': localStorage.getItem('token')
+                'auth-token': localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, location, date })
         });
@@ -45,7 +45,7 @@ const EventState = (props)=>{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-Token': localStorage.getItem('token')
+                'auth-token': localStorage.getItem('token')
             },
         });
 
@@ -69,7 +69,7 @@ const EventState = (props)=>{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-Token': localStorage.getItem('token')
+                'auth-token': localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, location, date })
         });
@@ -100,12 +100,15 @@ const EventState = (props)=>{
     //Get ALL events
     const getAllEvents = async ()=>{
         
+        //const token = localStorage.getItem('token');
+        //console.log("TOKEN BEING SENT TO BACKEND:", token)
+
         //API CALL
         const response = await fetch(`${host}/api/events/fetchevents`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-Token': localStorage.getItem('token')
+                'auth-token': localStorage.getItem('token')
             }
         });
         
@@ -124,7 +127,7 @@ const EventState = (props)=>{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-Token': localStorage.getItem('token')
+                'auth-token': localStorage.getItem('token')
             }
         });
 
@@ -143,7 +146,7 @@ const EventState = (props)=>{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-Token': localStorage.getItem('token')
+                'auth-token': localStorage.getItem('token')
             }
         });
 
@@ -161,7 +164,7 @@ const EventState = (props)=>{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-Token': localStorage.getItem('token')
+                'auth-token': localStorage.getItem('token')
             }
         });
 
@@ -178,7 +181,7 @@ const EventState = (props)=>{
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-Token': localStorage.getItem('token')
+                    'auth-token': localStorage.getItem('token')
                 }
             });
 

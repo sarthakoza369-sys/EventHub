@@ -2,16 +2,21 @@ import React,{useContext, useEffect} from 'react'
 import EventItems from './EventItems';
 import eventContext from '../context/events/eventContext';
 import UnregEventItems from './UnregEventItems';
+import { useNavigate } from 'react-router-dom';
 
 const RegEvents = () => {
 
   const context = useContext(eventContext);
   const { myRegEvents, getRegEvents } = context;
 
+  let navigate = useNavigate();
+
     useEffect(() => {
     if (localStorage.getItem('token')) {
       getRegEvents();
        // eslint-disable-next-line
+    }else{
+      navigate('/')
     }
   }, []);
 

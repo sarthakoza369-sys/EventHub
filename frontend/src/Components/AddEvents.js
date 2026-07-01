@@ -1,10 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import eventContext from "../context/events/eventContext";
+import { useNavigate } from "react-router-dom";
 
 const AddEvents = (props) => {
   const context = useContext(eventContext);
   const { addEvent } = context;
   const { event } = props;
+
+  let navigate = useNavigate();
+
+  useEffect(()=>{
+    if(!localStorage.getItem('token')){
+      navigate('/');
+    }
+  })
 
   // 1. Setup local state for input fields
   const [eventData, setEventData] = useState({
@@ -15,7 +24,7 @@ const AddEvents = (props) => {
   });
 
   const handleClick = (e) => {
-    e.preventDefault(); // <-- Prevents the page from resetting/reloading
+    e.preventDefault();
 
     // 2. Pass local state object instead of the click event
     addEvent(

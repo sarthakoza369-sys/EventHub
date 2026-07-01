@@ -8,6 +8,9 @@ import AddEvents from './Components/AddEvents';
 import MyEvents from './Components/MyEvents';
 import RegEvents from './Components/RegEvents';
 import EventState from './context/events/EventState'
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+import AuthenticationScreen from './Components/AuthenticationScreen';
 
 function App() {
   return (
@@ -18,10 +21,13 @@ function App() {
            <Navbar/>
            <div className="container">
             <Routes>
-              <Route path="/" element={<Home/>} />
+              <Route path="/" element={<AuthenticationScreen/>} />
+              <Route path="/home" element={<Home/>} />
               <Route path="/addevent" element={<AddEvents/>} />
               <Route path="/myevents" element={<MyEvents/>} />
               <Route path="/registeredevents" element={<RegEvents/>} />
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/signup" element={<Signup/>}/>
             </Routes>
            </div>
         </Router>

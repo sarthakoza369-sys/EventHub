@@ -15,11 +15,9 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-   joiningYear: {
+    joiningYear: {
         type: Number,
-        required: true,
-        min: 2020, // Prevents accidental typos or unrealistic inputs
-        max: new Date().getFullYear() // Dynamically restricts the max year to the current year
+        default: new Date().getFullYear() 
     },
     date:{
         type: Date,
