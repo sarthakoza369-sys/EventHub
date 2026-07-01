@@ -13,7 +13,7 @@ router.post("/addevent", fetchuser, [
 ],
     async(req, res)=>{
         try {
-            const {title, description, location, date} = req.body;
+            const {title, description, location, date, time} = req.body;
 
         //if there are errors, return BAD REQUEST
         const errors = validationResult(req);
@@ -24,7 +24,7 @@ router.post("/addevent", fetchuser, [
 
         //Creating an event:
         const event = new Event({
-            title, description, host: req.user.id, date, location
+            title, description, host: req.user.id, date, location, time
         });
 
         const savedEvent = await event.save();
@@ -65,13 +65,14 @@ router.post("/addevent", fetchuser, [
     router.put("/editevent/:id", fetchuser,
         async(req, res)=>{
             try {
-                const {title, description, location, date} = req.body;
+                const {title, description, location, date, time} = req.body;
                 
                 const newEvent={};
                 if(title){newEvent.title=title};
                 if(description){newEvent.description=description};
                 if(date){newEvent.date=date};
                 if(location){newEvent.location=location};
+                if(time){newEvent.time=time};
 
                 //Find the event to be updated and UPDATE it:
                 let event = await Event.findById(req.params.id);

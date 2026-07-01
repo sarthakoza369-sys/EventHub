@@ -16,7 +16,7 @@ const EventState = (props)=>{
 
     //Add an Event
 
-    const addEvent = async(title, description, location, date)=>{
+    const addEvent = async(title, description, location, date, time)=>{
 
         //API CALL
         const response = await fetch(`${host}/api/events/addevent`,{
@@ -25,7 +25,7 @@ const EventState = (props)=>{
                 'Content-Type': 'application/json',
                 'auth-token': localStorage.getItem('token')
             },
-            body: JSON.stringify({ title, description, location, date })
+            body: JSON.stringify({ title, description, location, date,time })
         });
 
         if(response.ok){
@@ -62,7 +62,7 @@ const EventState = (props)=>{
 
     //Edit an event
 
-    const editEvent = async (id, title, description, location, date) => {
+    const editEvent = async (id, title, description, location, date, time) => {
 
         //API CALL
         const response = await fetch(`${host}/api/events/editevent/${id}`, {
@@ -71,14 +71,14 @@ const EventState = (props)=>{
                 'Content-Type': 'application/json',
                 'auth-token': localStorage.getItem('token')
             },
-            body: JSON.stringify({ title, description, location, date })
+            body: JSON.stringify({ title, description, location, date,time })
         });
 
         if (response.ok) {
            // update home feed
            const newEvents = events.map((event) => {
                if (event._id === id) {
-                   return { ...event, title, description, location, date };
+                   return { ...event, title, description, location, date, time };
                }
                return event;
            });
@@ -87,7 +87,7 @@ const EventState = (props)=>{
            // update myEvents
            const newMyEvents = myEvents.map((event) => {
                if (event._id === id) {
-                   return { ...event, title, description, location, date };
+                   return { ...event, title, description, location, date, time };
                }
                return event;
            });

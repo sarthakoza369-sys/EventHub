@@ -21,6 +21,7 @@ const AddEvents = (props) => {
     description: "",
     location: "",
     date: "",
+    time:""
   });
 
   const handleClick = (e) => {
@@ -32,10 +33,11 @@ const AddEvents = (props) => {
       eventData.description,
       eventData.location,
       eventData.date,
+      eventData.time,
     );
 
     //3. Clear form fields after adding
-    setEventData({ title: "", description: "", location: "", date: "" });
+    setEventData({ title: "", description: "", location: "", date: "", time: "" });
   };
 
   const onChange = (e) => {
@@ -95,6 +97,19 @@ const AddEvents = (props) => {
             id="date"
             name="date"
             value={eventData.date}
+            onChange={onChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="date" className="form-label">
+            Time
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="time"
+            name="time"
+            value={eventData.time}
             onChange={onChange}
           />
         </div>

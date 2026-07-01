@@ -22,16 +22,16 @@ const RegEvents = () => {
 
   const ref = useRef(null);
   const refClose = useRef(null)
-  const [event, setEvent]=useState({etitle:"", edescription: "", elocation:"", edate:""});
+  const [event, setEvent]=useState({etitle:"", edescription: "", elocation:"", edate:"", etime:""});
 
     const updateEvent=(currentEvent)=>{
       ref.current.click();
 
-      setEvent({id: currentEvent._id, etitle: currentEvent.title, edescription: currentEvent.description, elocation:  currentEvent.location, edate: currentEvent.date ? currentEvent.date.substring(0, 10) : ""});
+      setEvent({id: currentEvent._id, etitle: currentEvent.title, edescription: currentEvent.description, elocation:  currentEvent.location, edate: currentEvent.date ? currentEvent.date.substring(0, 10) : "", etime: currentEvent.time});
   }
 
       const handleClick=(e)=>{
-        editEvent(event.id, event.etitle, event.edescription, event.elocation, event.edate);
+        editEvent(event.id, event.etitle, event.edescription, event.elocation, event.edate, event.etime);
         refClose.current.click();
      }  
 
@@ -68,6 +68,10 @@ const RegEvents = () => {
         <div className="mb-3">
           <label htmlFor="tag" className="form-label"> Date </label>
           <input type="date" className="form-control" value={event.edate} id="edate" name="edate" onChange={onChange}/>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label"> Time </label>
+          <input type="text" className="form-control" value={event.etime} id="etime" name="etime" onChange={onChange}/>
         </div>
         {/* <button type="submit" className="btn btn-primary" onClick={handleClick}> Add Note </button> */}
       </form>

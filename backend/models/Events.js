@@ -25,6 +25,10 @@ const EventSchema = new Schema({
         type: String,
         default: ''
     },
+    time: { // 👈 ADD THIS FIELD
+        type: String, 
+        required: true
+    },
     attendees: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'

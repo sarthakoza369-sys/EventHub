@@ -21,7 +21,10 @@ const Event = () => {
   return (
     <div className="container my-3">
       <h2>Upcoming Events</h2>
-      <div className="row">
+      {events.length===0?(
+                <h3 className="text-center my-5">You have not hosted any event</h3>
+      ):(
+        <div className="row">
         {events.map((event) => {
           return (
             <div className="col-md-4 p-3" key={event._id}>
@@ -30,6 +33,7 @@ const Event = () => {
           );
         })}
       </div>
+      )}
     </div>
   );
 };

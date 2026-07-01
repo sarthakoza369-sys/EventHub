@@ -10,6 +10,12 @@ const UnregEventItems = (props) => {
 
   return (
     <div className="card h-100 shadow-sm border border-secondary" style={{ maxWidth: "340px", margin: "auto" }}>
+      <span 
+        className="badge text-bg-dark position-absolute top-0 end-0 m-2 px-2 py-1 shadow-sm"
+        style={{ fontSize: "0.75rem", zIndex: 10 }}
+      >
+        {event.location} | {event.time} | {event.date.split('T')[0]}
+      </span>
       <img src={event.image || "https://placehold.co/50"} className="card-img-top" alt="..." />
       <div className="card-body py-2 px-3 d-flex flex-column justify-content-between">
         <div>
