@@ -25,7 +25,7 @@ const UnregEventItems = (props) => {
         
         {/* Actions row: Register button positioned nicely at the bottom right */}
         <div className="mt-2 d-flex justify-content-end">
-          <button className="btn btn-primary btn-sm px-3" onClick={()=>{unregisterEvent(event._id)}} style={{ fontSize: "0.75rem", borderRadius: "4px" }}>
+          <button className="btn btn-primary btn-sm px-3" onClick={async ()=>{await unregisterEvent(event._id); props.showAlert(" Unregistered successfully!!", "success");}} style={{ fontSize: "0.75rem", borderRadius: "4px" }}>
             Unregister
           </button>
         </div>

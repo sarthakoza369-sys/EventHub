@@ -22,7 +22,9 @@ const HostEventItems = (props) => {
           <p className="card-text text-muted mb-2" style={{ fontSize: "0.8rem" }}>{event.description}</p>
 
           <div className="mt-2 d-flex justify-content-end gap-3">
-            <span onClick={() => deleteEvent(event._id)} style= {{fontSize: "0.85rem",cursor: 'pointer' }}>
+            <span onClick={async ()=>{await deleteEvent(event._id);
+              props.showAlert("Deleted successfully!!", "success");
+            }} style= {{fontSize: "0.85rem",cursor: 'pointer' }}>
               <i className="far fa-trash-alt text-danger cursor-pointer" title="Delete"></i>
             </span>
 

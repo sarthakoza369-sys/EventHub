@@ -11,23 +11,39 @@ import EventState from './context/events/EventState'
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import AuthenticationScreen from './Components/AuthenticationScreen';
+import { useState } from 'react';
+import Alert from './Components/Alert';
 
 function App() {
+
+  const [alert, setAlert] = useState(null);
+
+  const showAlert= (message, type)=>{
+    setAlert({
+      msg: message,
+      type: type
+    })
+
+    setTimeout(()=>{
+      setAlert(null);
+    }, 2000);
+  }
+
   return (
     <>
       <EventState>
         <Router>
            <Hamburger/>
            <Navbar/>
+           <Alert alert={alert}/>
            <div className="container">
             <Routes>
-              <Route path="/" element={<AuthenticationScreen/>} />
-              <Route path="/home" element={<Home/>} />
-              <Route path="/addevent" element={<AddEvents/>} />
-              <Route path="/myevents" element={<MyEvents/>} />
-              <Route path="/registeredevents" element={<RegEvents/>} />
-              <Route path="/login" element={<Login/>}/>
-              <Route path="/signup" element={<Signup/>}/>
+              <Route path="/home" element={<Home showAlert={showAlert}/>} />
+              <Route path="/addevent" element={<AddEvents showAlert={showAlert}/>} />
+              <Route path="/myevents" element={<MyEvents showAlert={showAlert}/>} />
+              <Route path="/registeredevents" element={<RegEvents showAlert={showAlert}/>} />
+              <Route path="/login" element={<Login showAlert={showAlert}/>}/>
+              <Route path="/signup" element={<Signup showAlert={showAlert}/>}/>
             </Routes>
            </div>
         </Router>

@@ -29,7 +29,9 @@ const EventItems = (props) => {
           
           <button 
             className="btn btn-primary btn-sm px-3" 
-            onClick={() => { registerEvent(event._id); }} 
+            onClick={async() => {await registerEvent(event._id);
+              props.showAlert("Registered successfully!!", "success");
+             }} 
             style={{ fontSize: "0.75rem", borderRadius: "4px" }}
           >
             REGISTER

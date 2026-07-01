@@ -28,16 +28,13 @@ const AddEvents = (props) => {
     e.preventDefault();
 
     // 2. Pass local state object instead of the click event
-    addEvent(
-      eventData.title,
-      eventData.description,
-      eventData.location,
-      eventData.date,
-      eventData.time,
+    addEvent(eventData.title, eventData.description, eventData.location, eventData.date, eventData.time,
     );
 
     //3. Clear form fields after adding
     setEventData({ title: "", description: "", location: "", date: "", time: "" });
+
+    props.showAlert("Event hosted!!", "success")
   };
 
   const onChange = (e) => {

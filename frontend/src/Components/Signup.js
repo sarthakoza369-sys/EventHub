@@ -30,6 +30,7 @@ const Signup = (props)  => {
     const json = await response.json();
     if (response.ok) {
       localStorage.setItem('token', json.authToken);
+      props.showAlert("SignUp Successfull!!", "success");
       navigate('/home');
     }else{
       const errorText = await response.text();

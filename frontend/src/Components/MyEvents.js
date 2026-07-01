@@ -3,7 +3,7 @@ import eventContext from '../context/events/eventContext';
 import HostEventItems from './HostEventItems';
 import {useNavigate} from 'react-router-dom';
 
-const RegEvents = () => {
+const RegEvents = (props) => {
 
   const context = useContext(eventContext);
   const {myEvents, getHostedEvents, editEvent } = context;
@@ -33,6 +33,8 @@ const RegEvents = () => {
       const handleClick=(e)=>{
         editEvent(event.id, event.etitle, event.edescription, event.elocation, event.edate, event.etime);
         refClose.current.click();
+
+        props.showAlert("Updated successfully!!", "success");
      }  
 
      const onChange=(e)=>{
@@ -93,8 +95,7 @@ const RegEvents = () => {
           {myEvents.map((event) => {
             return (
               <div className="col-md-4 p-3" key={event._id}>
-                <HostEventItems event={event} updateEvent={updateEvent} />
-              </div>
+                <HostEventItems event={event} updateEvent={updateEvent} showAlert={props.showAlert}/>           </div>
             );
           })}
         </div>

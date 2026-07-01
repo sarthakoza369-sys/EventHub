@@ -55,6 +55,7 @@ const EventState = (props)=>{
 
             const newMyEvents = myEvents.filter((event) => event._id !== id);
             setMyEvents(newMyEvents);
+            
         }else{
             alert("Something went wrong!!");
         }
