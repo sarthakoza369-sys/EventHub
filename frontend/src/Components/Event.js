@@ -10,12 +10,8 @@ const Event = (props) => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      getAllEvents();
-       // eslint-disable-next-line
-    }else{
-      navigate('/');
-    }
+      getHostedEvents();
+      // eslint-disable-next-line
   }, []);
 
   return (

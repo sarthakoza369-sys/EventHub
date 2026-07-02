@@ -11,14 +11,10 @@ const RegEvents = (props) => {
 
   let navigate = useNavigate();
 
-    useEffect(() => {
-    if (localStorage.getItem('token')) {
-      getRegEvents();
-       // eslint-disable-next-line
-    }else{
-      navigate('/')
-    }
-  }, []);
+useEffect(() => {
+  getRegEvents();
+  // eslint-disable-next-line
+}, []);
 
   return (
     <div className="container my-3">

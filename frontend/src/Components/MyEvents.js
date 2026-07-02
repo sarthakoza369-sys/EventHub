@@ -11,13 +11,8 @@ const RegEvents = (props) => {
   let navigate = useNavigate();
 
     useEffect(() => {
-    if (localStorage.getItem('token')) {
-      getHostedEvents();
-       // eslint-disable-next-line
-    }
-    else{
-      navigate('/')
-    }
+       getHostedEvents();
+        // eslint-disable-next-line
   }, []);
 
   const ref = useRef(null);

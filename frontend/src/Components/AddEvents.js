@@ -9,12 +9,6 @@ const AddEvents = (props) => {
 
   let navigate = useNavigate();
 
-  useEffect(()=>{
-    if(!localStorage.getItem('token')){
-      navigate('/');
-    }
-  })
-
   // 1. Setup local state for input fields
   const [eventData, setEventData] = useState({
     title: "",
