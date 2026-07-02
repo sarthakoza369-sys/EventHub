@@ -33,11 +33,12 @@ function App() {
     <>
       <EventState>
         <Router>
-           <Hamburger/>
-           <Navbar/>
+          <Hamburger/>
+          <Navbar/>
            <Alert alert={alert}/>
            <div className="container">
             <Routes>
+              <Route path="/" element = {<AuthenticationScreen/>} />
               <Route path="/home" element={<Home showAlert={showAlert}/>} />
               <Route path="/addevent" element={<AddEvents showAlert={showAlert}/>} />
               <Route path="/myevents" element={<MyEvents showAlert={showAlert}/>} />

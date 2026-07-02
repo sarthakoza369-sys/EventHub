@@ -13,6 +13,10 @@ const Navbar = () => {
   let location = useLocation();
   let navigate = useNavigate();
   
+  if(location.pathname==='/'||location.pathname==='/login'||location.pathname==='/signup'){
+    return null;
+  }
+
     const handleLogout=()=>{
       localStorage.removeItem('token');
       navigate('/');
@@ -31,10 +35,7 @@ const Navbar = () => {
           <Link className={`nav-link ${location.pathname==="/"?"active": ""}`} aria-current="page" to="/">Home</Link>
         </li>
       </ul>
-      {!localStorage.getItem('token')?<form className="d-flex" role="search">
-        <Link class="btn btn-primary mx-2" to="/login" role="button">Login</Link>
-        <Link class="btn btn-primary mx-2" to="/signup" role="button">Signup</Link>
-      </form>:<button onClick={handleLogout}className='btn btn-primary'>Logout</button>}
+     <button onClick={handleLogout}className='btn btn-primary'>Logout</button>
     </div>
   </div>
 </nav>
