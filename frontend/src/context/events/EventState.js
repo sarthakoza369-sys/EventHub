@@ -32,7 +32,8 @@ const EventState = (props)=>{
             const event = await response.json();
             setEvents(events.concat(event))
         }else{
-            alert("Something went wrong!!");
+            const json = await response.json();
+            alert(json.error || "Something went wrong while adding the event!!");
         }
     }
 
@@ -57,7 +58,8 @@ const EventState = (props)=>{
             setMyEvents(newMyEvents);
             
         }else{
-            alert("Something went wrong!!");
+            const json = await response.json();
+            alert(json.error || "Something went wrong while deleting the event!!");
         }
     }
 
@@ -94,8 +96,8 @@ const EventState = (props)=>{
            });
            setMyEvents(newMyEvents);
        } else {
-           alert("Something went wrong!!");
-       }
+            const json = await response.json();
+            alert(json.error || "Something went wrong while editing the event!!");       }
     }
 
     //Get ALL events
@@ -117,8 +119,8 @@ const EventState = (props)=>{
             const json = await response.json();
             setEvents(json);
         }else{
-            alert("Something went wrong!!");
-        }
+            const json = await response.json();
+            alert(json.error || "Something went wrong!!");        }
     }
 
     //Get Hosted events
@@ -136,7 +138,8 @@ const EventState = (props)=>{
             const json = await response.json();
             setMyEvents(json);
         }else{
-            alert("Something went wrong!!");
+            const json = await response.json();
+            alert(json.error || "Something went wrong while adding the event!!");
         }
     }
 
@@ -155,7 +158,8 @@ const EventState = (props)=>{
             const json = await response.json();
             setMyRegEvents(json);
         }else{
-            alert("Something went wrong!!");
+            const json = await response.json();
+            alert(json.error || "Something went wrong");
         }
     }
 
@@ -173,7 +177,8 @@ const EventState = (props)=>{
             await getAllEvents();      // refresh home feed (attendee count updates)
             await getRegEvents();      // refresh registered events list
         } else {
-            alert("Something went wrong!!");
+            const json = await response.json();
+            alert(json.error || "Something went wrong while registration!!");
         }
         }
 
@@ -190,7 +195,8 @@ const EventState = (props)=>{
                 await getAllEvents();      // refresh home feed (attendee count updates)
                 await getRegEvents();      // refresh registered events list
             } else {
-                alert("Something went wrong!!");
+                const json = await response.json();
+                alert(json.error || "Something went wrong with unregistration");
             }
             }
 

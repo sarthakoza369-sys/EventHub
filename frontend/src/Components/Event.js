@@ -3,7 +3,7 @@ import EventItems from './EventItems';
 import eventContext from '../context/events/eventContext';
 import {useNavigate} from 'react-router-dom';
 
-const Event = () => {
+const Event = (props) => {
   const context = useContext(eventContext);
   const { events, getAllEvents } = context;
 
@@ -28,8 +28,8 @@ const Event = () => {
         {events.map((event) => {
           return (
             <div className="col-md-4 p-3" key={event._id}>
-              <EventItems event={event} />
-            </div>
+              <EventItems event={event} showAlert={props.showAlert} />           
+ </div>
           );
         })}
       </div>

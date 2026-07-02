@@ -80,11 +80,6 @@ router.post("/addevent", fetchuser, [
                     return res.status(404).send("Not Found")
                 }
 
-                //Allow deletion only if HOST owns it:
-                if(event.host.toString() !== req.user.id){
-                    return res.status(401).send("Not Allowed");
-                }
-
                 event = await Event.findByIdAndUpdate(req.params.id, {$set: newEvent}, {new: true});
                 res.json({event});
             } catch (err) {
@@ -105,11 +100,11 @@ router.post("/addevent", fetchuser, [
 
             //Allow registration only if he is not HOST of that event:
             if(event.host.toString() === req.user.id){
-                return res.status(401).send("You are the host");
+                return res.status(401).json({error: "You are the host"});
             }
 
             if(event.attendees.some(attendeeId => attendeeId.toString() === req.user.id)){
-                return res.status(400).json("You are already registered for this event");
+                return res.status(400).json({error: "You are already registered for this event"});
             }
 
            event.attendees.push(req.user.id);
@@ -137,11 +132,11 @@ router.post("/addevent", fetchuser, [
 
             //Allow unregistration only if user is not HOST of that event:
             if(event.host.toString() === req.user.id){
-                return res.status(401).send("You are the host");
+                return res.status(401).json({error: "You are the host"});
             }
 
             if(!event.attendees.some(attendeeId => attendeeId.toString() === req.user.id)){
-                return res.status(400).json("You are not registered for this event");
+                return res.status(400).json({error: "You are not registered for this event"});
             }
 
            event.attendees = event.attendees.filter((attendeeId)=>{

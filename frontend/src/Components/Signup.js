@@ -33,9 +33,7 @@ const Signup = (props)  => {
       props.showAlert("SignUp Successfull!!", "success");
       navigate('/home');
     }else{
-      const errorText = await response.text();
-      console.error("Server Error Response:", errorText);
-      alert("Something went wrong on the server.");
+      alert(json.error||"Something went wrong on the server.")
       return;
     }
 

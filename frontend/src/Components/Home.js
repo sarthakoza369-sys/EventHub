@@ -1,10 +1,10 @@
 import React from 'react'
 import Event from './Event'
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div>
-      <Event/>
+      <Event showAlert={props.showAlert}/>
     </div>
   )
 }

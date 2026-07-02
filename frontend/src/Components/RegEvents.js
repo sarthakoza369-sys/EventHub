@@ -4,7 +4,7 @@ import eventContext from '../context/events/eventContext';
 import UnregEventItems from './UnregEventItems';
 import { useNavigate } from 'react-router-dom';
 
-const RegEvents = () => {
+const RegEvents = (props) => {
 
   const context = useContext(eventContext);
   const { myRegEvents, getRegEvents } = context;
@@ -31,7 +31,7 @@ const RegEvents = () => {
           {myRegEvents.map((event) => {
             return (
               <div className="col-md-4 p-3" key={event._id}>
-                <UnregEventItems event={event} />
+                <UnregEventItems event={event} showAlert={props.showAlert}/>
               </div>
             );
           })}
