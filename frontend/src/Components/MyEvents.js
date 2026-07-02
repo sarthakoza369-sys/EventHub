@@ -1,14 +1,11 @@
 import React,{useContext, useEffect, useRef, useState} from 'react'
 import eventContext from '../context/events/eventContext';
 import HostEventItems from './HostEventItems';
-import {useNavigate} from 'react-router-dom';
 
 const RegEvents = (props) => {
 
   const context = useContext(eventContext);
   const {myEvents, getHostedEvents, editEvent } = context;
-
-  let navigate = useNavigate();
 
     useEffect(() => {
        getHostedEvents();

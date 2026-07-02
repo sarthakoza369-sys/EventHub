@@ -1,16 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import EventItems from './EventItems';
 import eventContext from '../context/events/eventContext';
-import {useNavigate} from 'react-router-dom';
 
 const Event = (props) => {
   const context = useContext(eventContext);
   const { events, getAllEvents } = context;
 
-  let navigate = useNavigate();
-
   useEffect(() => {
-      getHostedEvents();
+      getAllEvents();
       // eslint-disable-next-line
   }, []);
 

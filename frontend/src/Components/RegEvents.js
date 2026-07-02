@@ -2,14 +2,11 @@ import React,{useContext, useEffect} from 'react'
 import EventItems from './EventItems';
 import eventContext from '../context/events/eventContext';
 import UnregEventItems from './UnregEventItems';
-import { useNavigate } from 'react-router-dom';
 
 const RegEvents = (props) => {
 
   const context = useContext(eventContext);
   const { myRegEvents, getRegEvents } = context;
-
-  let navigate = useNavigate();
 
 useEffect(() => {
   getRegEvents();
